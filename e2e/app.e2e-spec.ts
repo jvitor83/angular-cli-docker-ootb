@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('clean App', () => {
+describe('angular-cli-docker-ootb App', () => {
   let page: AppPage;
 
   beforeEach(() => {

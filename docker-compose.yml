@@ -1,8 +1,8 @@
 version: '2.1'
 
 services:
-  clean:
-    image: clean
+  angular-cli-docker-ootb:
+    image: angular-cli-docker-ootb
     build: .
     environment:
       NODE_ENV: production
