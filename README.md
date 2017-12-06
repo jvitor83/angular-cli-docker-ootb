@@ -1,27 +1,26 @@
-# Clean
+# Angular CLI with Docker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.5.
+This is an example app created with the Angular CLI that runs with Docker
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+I ran `ng new myapp` to generate the app. Then added the 4 docker files:
 
-## Code scaffolding
+```bash
+.dockerignore
+docker-compose.yml
+docker-compose.debug.yml
+Dockerfile
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Running
 
-## Build
+Two options are available. I prefer the docker compose technique
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+Option 1) You can run docker build and docker run
 
-## Running unit tests
+  ```
+  docker build --rm -f Dockerfile -t angular-cli-docker-ootb:latest .
+  docker run --rm -d -p 443:443 -p 80:80 angular-cli-docker-ootb:latest
+  ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Option 2) You can run docker compose `docker-compose up -d --build`
