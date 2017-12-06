@@ -44,3 +44,5 @@ COPY --from=angular-built /usr/src/app/dist /usr/share/nginx/html
 EXPOSE 80 443
 CMD [ "nginx", "-g", "daemon off;" ]
 ```
+
+The catch on this is that it uses an unofficial docker image that I created. I try to keep it updated, but the latest will always be to install it yourself in the `Dockerfile`
