@@ -24,3 +24,23 @@ Option 1) You can run docker build and docker run
   ```
 
 Option 2) You can run docker compose `docker-compose up -d --build`
+
+
+## Faster
+
+This example uses the node alpine image and then installs the latest Angular CLI. If you want to use an image that has node alpine and the Angular CLI already isntalled, you can change your `Dockerfile` to use `johnpapa/angular-cli`. SOmething like this ...
+
+```bash
+FROM johnpapa/angular-cli as angular-built
+WORKDIR /usr/src/app
+COPY package.json package.json
+RUN npm install --silent
+COPY . .
+RUN ng build --prod --build-optimizer
+
+FROM nginx:alpine
+LABEL author="John Papa"
+COPY --from=angular-built /usr/src/app/dist /usr/share/nginx/html
+EXPOSE 80 443
+CMD [ "nginx", "-g", "daemon off;" ]
+```
